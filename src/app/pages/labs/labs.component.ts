@@ -12,11 +12,11 @@ export class LabsComponent {
   welcome = 'Hola!';
   tasks = signal(['Instalar el Angular CLI', 'Crear proyecto', 'Crear componentes']);
 
-  person = {
+  person = signal({
     name: 'Silvia',
     img: 'https://w3schools.com/howto/img_avatar.png',
     age: 36,
-  };
+  });
   name = signal('Zelda');
 
   clickHandler() {
@@ -34,4 +34,17 @@ export class LabsComponent {
     const input = event.target as HTMLInputElement;
     console.log(input.value);
   }
+
+
+  changeAge(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update(prevState => {
+      return {
+        ...prevState,
+        age: parseInt(newValue, 10)
+      }
+    });
+  }
 }
+
