@@ -10,7 +10,11 @@ import { Component, signal } from '@angular/core';
 export class LabsComponent {
   //estas clases son publicas, si le ponemos private delante, solo podremos utilizarlas en la clase
   welcome = 'Hola!';
-  tasks = signal(['Instalar el Angular CLI', 'Crear proyecto', 'Crear componentes']);
+  tasks = signal([
+    'Instalar el Angular CLI',
+    'Crear proyecto',
+    'Crear componentes',
+  ]);
 
   person = signal({
     name: 'Silvia',
@@ -35,16 +39,25 @@ export class LabsComponent {
     console.log(input.value);
   }
 
-
   changeAge(event: Event) {
     const input = event.target as HTMLInputElement;
     const newValue = input.value;
-    this.person.update(prevState => {
+    this.person.update((prevState) => {
       return {
         ...prevState,
-        age: parseInt(newValue, 10)
-      }
+        age: parseInt(newValue, 10),
+      };
+    });
+  }
+
+  changeName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update((prevState) => {
+      return {
+        ...prevState,
+        name: newValue,
+      };
     });
   }
 }
-
